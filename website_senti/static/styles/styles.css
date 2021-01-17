@@ -1,0 +1,28 @@
+main{
+    text-align: center;
+}
+.jumbotron-fluid{
+    background-color: white;
+}
+
+#google_bar{
+    border-radius: 25px;
+    padding: 20px; 
+    width: 500px;
+    height: 15px;
+}
+
+/* got from w3schools.org */
+.vertical-center{
+    display: flex;
+    align-items: center;
+}
+
+.google-text{
+    text-emphasis-color:green; 
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar{
+    align-items: center;
+}
+

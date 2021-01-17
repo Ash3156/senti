@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<div class="jumbotron d-flex align-items-center min-vh-100">
+    <div style="background-color:transparent !important" class="container container-fluid text-center">
+        <h1 class="google-text"><span style="color:green">senti</span></h1>
+        <br>
+        <form action='/display' method='POST'>
+            <div class="form-group">
+                <input autocomplete='on' id="google_bar" type="text" name="stock_inquiry" placeholder="search..." required>
+                <br>
+                <br>
+                <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>   
+        </form>
+    </div>
+</div>
+{% endblock %}

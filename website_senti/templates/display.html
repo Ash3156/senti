@@ -1,0 +1,38 @@
+{% extends "nav_template.html" %}
+
+{% block main %}
+<div>
+    <h1>{{ ticker }}</h1>
+    <h3><u>Results</u></h3>
+</div>
+
+{% for item in test_list %}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card align-items-center">
+            <div class="row card-body">
+               <div class="col-sm-6">
+                  <h5 class="card-title"><a href={{ item['url'] }}>
+                    {{ item['title'] }}</a></h5>
+                   <p class="card-text text-muted">Article Polarity Level: {{ item['polarity'] }}
+                       <br>Article Subjectivity Level: {{ item['subjectivity'] }}
+                   </p>
+                </div>
+                <img class="col-sm-6" src={{ item['image'] }} alt="sans"/>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="d-flex align-items-center min-vh-100">
+    <div class="card">
+        <img class="card-img-top img_small" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Mama_instant_noodle_block.jpg" alt="ramen">
+        <div class="card-body">
+          <h4 class="card-title">David Liu</h4>
+          <p class="card-text text-muted">David Liu in his natural environment</p>
+          <a href="/" class="btn btn-primary">What a qt</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
