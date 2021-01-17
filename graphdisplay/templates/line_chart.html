@@ -3,10 +3,18 @@
     <head>
         <meta charset="utf-8" />
         <title>{{ title }}</title>
-        <link rel="stylesheet" href="graphs.css">
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
-            integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+            integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous">
+        </script>
+        <style>
+          .flex-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding:5px
+            }
+        </style>
     </head>
 
     <body>
@@ -21,7 +29,7 @@
           <canvas id="chart1" width="300" height="300"></canvas>
         </div>
       </div>
-      <div>
+      <div class="flex-container">
         <div>
           <canvas id="chart2" width="300" height="300"></canvas>
         </div>
@@ -29,7 +37,7 @@
           <canvas id="chart3" width="300" height="300"></canvas>
         </div>
       </div>
-      <div>
+      <div class="flex-container">
         <div>
           <canvas id="chart4" width="300" height="300"></canvas>
         </div>
@@ -37,7 +45,7 @@
           <canvas id="chart5" width="300" height="300"></canvas>
         </div>
       </div>
-      <div>
+      <div class="flex-container">
         <div>
           <canvas id="chart6" width="300" height="300"></canvas>
         </div>
