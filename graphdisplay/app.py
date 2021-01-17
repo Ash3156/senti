@@ -21,7 +21,7 @@ colors = [
 @cross_origin()
 def data():
     values = []
-    for i in range(3):
+    for i in range(8):
         values.append([])
         values[i].append([])
         values[i].append([])
@@ -36,7 +36,7 @@ def data():
 @app.route('/')
 def line():
 
-    return render_template('line_chart.html', title='Bitcoin Monthly Price in USD', values=[], max=1700, labels=[])
+    return render_template('line_chart.html', title='Polarity and Subjectivity By Country', values=[], max=1700, labels=[])
 
 @app.route('/test')
 def test():
