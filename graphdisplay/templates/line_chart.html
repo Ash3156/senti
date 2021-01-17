@@ -1,159 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>{{ title }}</title>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <title>{{ title }}</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+            integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    </head>
 
-<body>
-<center>
-    <h1>{{ title }}</h1>
+    <body>
+        <!-- <center>
+            <h1>{{ title }}</h1>
+            <div style="width: 600px">
+              <canvas id="chart0" width="400" height="400"></canvas>
+            </div>
+            <script>
+              const i = 0;
+              let apiData;
+              const ctx = document.getElementById('chart0').getContext('2d');
+              fetch("/api/data")
+              .then(res => res.json())
+              .then(data => apiData = data)
+              .then(() => {
+                console.log("Made API request to /api/data");
+                const myChart = new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                      labels: apiData.labels,
+                      datasets: [{
+                          label: 'US Sentiment Scores',
+                          data: apiData.values[i][0],
+                          backgroundColor: [
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(75, 192, 192, 0.2)',
+                              'rgba(153, 102, 255, 0.2)',
+                              'rgba(255, 159, 64, 0.2)'
+                          ],
+                          borderColor: [
+                              'rgba(255, 99, 132, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(75, 192, 192, 1)',
+                              'rgba(153, 102, 255, 1)',
+                              'rgba(255, 159, 64, 1)'
+                          ],
+                          borderWidth: 1
+                      }]
+                  },
+                  options: {
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero: true
+                              }
+                          }]
+                      }
+                  }
+              });
+              });
+              </script>
+        </center> -->
 
-    <canvas id="chart0" width="300" height="300"></canvas>
+      <center>
+        <h1>{{ title }}</h1>
 
-    <script>
-      var i = 0
+        <canvas id="chart1" width="300" height="300"></canvas>
 
-      // bar chart data
-      var barData = {
-        labels : [
-          {% for item in labels %}
-            "{{ item }}",
-          {% endfor %}
-        ],
-
-        datasets : [{
-          fillColor: "rgba(0,0,0,0)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          bezierCurve : false,
-          data : [
-	    {% for item in values[i] %}
-              {{ item }},
-            {% endfor %}]
-          }, {
-          fillColor: "rgba(0,0,0,0)",
-          strokeColor: "rgba(250,0,0,1)",
-          pointColor: "rgba(250,0,0,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(250,0,0,1)",
-          bezierCurve : false,
-          data : [
-	    {% for item in values[i] %}
-              {{ item + 1000 }},
-            {% endfor %}]
+        <script>
+          const i = 1;
+          let apiData;
+          const ctx = document.getElementById('chart1').getContext('2d');
+          // line chart data
+          console.log("test print");
+          fetch("/api/data")
+          .then(res => res.json())
+          .then(data => apiData = data)
+          .then(() => {
+            console.log("Made API request to /api/data");
+            const lineData = {
+              labels : apiData.labels,
+              datasets : [{
+                fillColor: "rgba(0,0,0,0)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                bezierCurve : false,
+                data : apiData.values[i][0]
+              }, {
+                fillColor: "rgba(0,0,0,0)",
+                strokeColor: "rgba(250,0,0,1)",
+                pointColor: "rgba(250,0,0,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(250,0,0,1)",
+                bezierCurve : false,
+                data : apiData.values[i][1]
           }
-	]
-      }
+        ]
+      };
+            
 
-      Chart.defaults.global.animationSteps = 50;
-      Chart.defaults.global.tooltipYPadding = 16;
-      Chart.defaults.global.tooltipCornerRadius = 0;
-      Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
-      Chart.defaults.global.animationEasing = "easeOutBounce";
-      Chart.defaults.global.responsive = false;
-      Chart.defaults.global.scaleLineColor = "black";
-      Chart.defaults.global.scaleFontSize = 16;
+          //Chart.defaults.global.animationSteps = 50;
+          Chart.defaults.global.tooltipYPadding = 16;
+          Chart.defaults.global.tooltipCornerRadius = 0;
+          Chart.defaults.global.tooltipTitleFontStyle = "normal";
+          Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+          //Chart.defaults.global.animationEasing = "easeOutBounce";
+          Chart.defaults.global.responsive = false;
+          Chart.defaults.global.scaleLineColor = "black";
+          Chart.defaults.global.scaleFontSize = 16;
 
-      // get bar chart canvas
-      var mychart = document.getElementById("chart0").getContext("2d");
-
-      steps = 10
-      max = {{ max }}
-      // draw bar chart
-      var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true,
-        bezierCurve: false,
-      });
-
-    </script>
-  </center>
-  <center>
-    <h1>{{ title }}</h1>
-
-    <canvas id="chart1" width="300" height="300"></canvas>
-
-    <script>
-      var i = 1
-      // bar chart data
-      var barData = {
-        labels : [
-          {% for item in labels %}
-            "{{ item }}",
-          {% endfor %}
-        ],
-
-        datasets : [{
-          fillColor: "rgba(0,0,0,0)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          bezierCurve : false,
-          data : [
-	    {% for item in values[i] %}
-              {{ item }},
-            {% endfor %}]
-          }, {
-          fillColor: "rgba(0,0,0,0)",
-          strokeColor: "rgba(250,0,0,1)",
-          pointColor: "rgba(250,0,0,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(250,0,0,1)",
-          bezierCurve : false,
-          data : [
-	    {% for item in values[i] %}
-              {{ item + 1000 }},
-            {% endfor %}]
+          // get bar chart canvas
+          
+          steps = 10
+          const max = apiData.max;
+          // draw bar chart
+          const myChart = new Chart(ctx, {
+            type: 'line',
+            data: lineData, 
+            options: {
+            scaleOverride: true,
+            scaleSteps: steps,
+            scaleStepWidth: Math.ceil(max / steps),
+            scaleStartValue: 0,
+            scaleShowVerticalLines: true,
+            scaleShowGridLines : true,
+            barShowStroke : true,
+            scaleShowLabels: true,
+            bezierCurve: false,
           }
-	]
-      }
-
-      Chart.defaults.global.animationSteps = 50;
-      Chart.defaults.global.tooltipYPadding = 16;
-      Chart.defaults.global.tooltipCornerRadius = 0;
-      Chart.defaults.global.tooltipTitleFontStyle = "normal";
-      Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
-      Chart.defaults.global.animationEasing = "easeOutBounce";
-      Chart.defaults.global.responsive = false;
-      Chart.defaults.global.scaleLineColor = "black";
-      Chart.defaults.global.scaleFontSize = 16;
-
-      // get bar chart canvas
-      var mychart = document.getElementById("chart1").getContext("2d");
-
-      steps = 10
-      max = {{ max }}
-      // draw bar chart
-      var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true,
-        bezierCurve: false,
+        });
       });
-
-    </script>
-  </center>
+        </script>
+    </center>
+  <!-- /*
   <center>
     <h1>{{ title }}</h1>
 
@@ -228,5 +212,6 @@
 
     </script>
   </center>
-</body>
+  */ -->
+    </body>
 </html>
