@@ -18,8 +18,12 @@ def redirect_to_display():
 def show_results(query):
     query = query.split("%20")
     query = " ".join(query)
-    results = f.add_sentiments(f.full_results(f.search_url(query)), False)
-    return render_template("display.html", results = results)
+    query_results = f.add_sentiments(f.full_results(f.search_url(query)), False)
+    return render_template("display.html", query_results = query_results)
+
+@app.route('/trends', methods=['GET'])
+def trends():
+    return render_template("trends.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,11 +1,29 @@
 {% extends "layout.html" %}
 
-{% block body %}
-<form action="/search" method="post">
-           <h1>Search Page</h1>
-           <form action="/results" method="post">
-               <input autocomplete="off" autofocus name="query" placeholder="Enter a query" type="text">
-               <input type="submit" value="Search">
-           </form>
-        </form>
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<div class="jumbotron d-flex align-items-center min-vh-100">
+    <div style="background-color:transparent !important" class="container container-fluid text-center">
+        <img style="max-width: 80%; max-height: 80%;" src="https://lh3.googleusercontent.com/eVPnwhvOYam5wb6GSGh_NLz4-CxW721O_4XsBcEJ5Rit71ALb9z4-GXOJuWvMTLy8yYuOXlgu7buYnVrMv_vHZFxxG4NPK1bT3YzqSBs06o5fJAYw4FMU7J2dlRruXr24EyxbmiqDhDvx0s_P-6_GYpxBUFwHGbH1uWZ1zUcXC61zRpC_-i0BtEXNCqrpmpp1SzAPEQfrxZJ8j3ajwcyKWqP9_EAAbEDVcvj71uv8W4Pi2X5n1Aa8d36ovjr3bfKgGogHwr_wSc3XG9EuiZoNgh548M-JMmGxvCzBlLvutGhhm8-_vf1vJg235tCS39iWHRvWLfHqIDjZ-adlLWddbqyDZRsYps6H072POdScZuP5yWZVovfs4RZh89_Heu25dL4ievQBwb_A2DunEABrFLIVJN6vSr6euUBKtAO1z9MAeEGcYOZRHINiA01BKyu_226fzYDjSzm7OSJLyG-BUWE5Rg8uSV6coN0SEizQTUl1cI2b9F-tNUTx__rkm2Yf6ZdLJonW3Bb_4AOPkh3dhDmZX0zeO4_xYwC9Adg4IlpIYQQYcv8OVBhjSN2XzOJxU24_e0ArSTQj6D0Gq88_ZB2LOmXdu_o7-n-3DfvVEkXwHAbAqIYvdLapfeOCAvy1J_tYhZYaTe5LU-UkS0iKr16-PwgKf9vygfDOWa4b5hWxIbluo63nX8t4VeH9A=w815-h339-no?authuser=0">
+        <br>
+        <div class="container-fluid">
+            <form action='/search' method='POST'>
+                <input autocomplete='on' id="google_bar" type="text" name="query" placeholder="search..." required>
+                <br>
+                <br>
+                <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>  
+            </form>
+            <form action='/trends' method='GET'>
+                <button class="btn btn-outline-primary btn-sm" type="submit">Global Trends</button>
+            </form> 
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_footer %}
+<footer class="small text-muted">
+    Developed at HTNE by Christy Jestin, Ash Ahmed, Charles Ma, and David Liu.
+</footer>
 {% endblock %}
