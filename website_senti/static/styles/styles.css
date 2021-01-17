@@ -1,8 +1,14 @@
 main{
     text-align: center;
+    text-emphasis-color:green; 
+    font-family: 'Open Sans', sans-serif;
 }
 .jumbotron-fluid{
     background-color: white;
+}
+
+form{
+    display: inline;
 }
 
 #google_bar{
@@ -18,10 +24,10 @@ main{
     align-items: center;
 }
 
-.google-text{
-    text-emphasis-color:green; 
-    font-family: 'Open Sans', sans-serif;
+.logo-text{
+    color: #3CB371;
 }
+
 .navbar{
     align-items: center;
 }

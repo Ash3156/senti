@@ -28,5 +28,10 @@ def display():
     print(test_list[0]['polarity'])
     return render_template("display.html", ticker=ticker, test_list=test_list)
 
+@app.route('/trends', methods=['GET'])
+def trends():
+    return render_template("trends.html")
+
+
 if __name__ == 'main':
     app.run(debug=True)

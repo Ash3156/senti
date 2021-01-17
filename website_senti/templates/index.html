@@ -5,15 +5,19 @@
 {% block main %}
 <div class="jumbotron d-flex align-items-center min-vh-100">
     <div style="background-color:transparent !important" class="container container-fluid text-center">
-        <h1 class="google-text"><span style="color:green">senti</span></h1>
+        <h1 class="logo-text">senti</h1>
         <br>
-        <form action='/display' method='POST'>
-            <div class="form-group">
+        <div class="container-fluid">
+            <form action='/display' method='POST'>
                 <input autocomplete='on' id="google_bar" type="text" name="stock_inquiry" placeholder="search..." required>
                 <br>
                 <br>
-                <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>   
-        </form>
+                <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>  
+            </form>
+            <form action='/trends' method='GET'>
+                <button class="btn btn-outline-primary btn-sm" type="submit">Global Trends</button>
+            </form> 
+        </div>
     </div>
 </div>
 {% endblock %}
