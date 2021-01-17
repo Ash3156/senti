@@ -3,19 +3,19 @@
 {% block main %}
 <div>
     <br>
-    <h4 class="logo-text"><i>Top ten results for your search: </i><span style='color:darkslategray'>{{ ticker }}</span></h3>
+    <h4 class="logo-text">Results: <span style='color:darkslategray'>{{ ticker }}</span></h3>
 </div>
 
-{% for item in test_list %}
+{% for item in query_results %}
 <div class="row row-no-gutters">
     <div class="col-sm-5 mx-auto">
         <div class="card align-items-center">
             <div class="row card-body">
                <div class="col-sm-9">
-                  <h5 class="card-title"><a href={{ item['url'] }}>
+                  <h5 class="card-title left-text"><a href={{ item['url'] }}>
                     {{ item['title'] }}</a></h5>
-                   <p class="card-text text-muted">Article Polarity Level: {{ item['polarity'] }}
-                       <br>Article Subjectivity Level: {{ item['subjectivity'] }}
+                   <p class="card-text text-muted left-text">Polarity: {{ item['polarity'] }}
+                       <br>Subjectivity: {{ item['subjectivity'] }}
                    </p>
                 </div>
                 <img class="col-sm-3" src={{ item['image'] }} alt="sans"/>

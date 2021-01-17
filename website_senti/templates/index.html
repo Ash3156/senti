@@ -5,11 +5,12 @@
 {% block main %}
 <div class="jumbotron d-flex align-items-center min-vh-100">
     <div style="background-color:transparent !important" class="container container-fluid text-center">
-        <h1 class="logo-text">senti</h1>
+        <h1 class="logo-text">senti</h1> 
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/368px-Google_2015_logo.svg.png"> -->
         <br>
         <div class="container-fluid">
             <form action='/display' method='POST'>
-                <input autocomplete='on' id="google_bar" type="text" name="stock_inquiry" placeholder="search..." required>
+                <input autocomplete='on' id="google_bar" type="text" name="inquiry" placeholder="search..." required>
                 <br>
                 <br>
                 <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>  
@@ -20,4 +21,10 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block custom_footer %}
+<footer class="small text-muted">
+    Developed at HTNE by Christy Jestin, Ash Ahmed, Charles Ma, and David Liu.
+</footer>
 {% endblock %}

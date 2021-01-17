@@ -3,6 +3,15 @@ main{
     text-emphasis-color:green; 
     font-family: 'Open Sans', sans-serif;
 }
+
+.left-text{
+    text-align: left;
+}
+
+p{
+    font-size: x-small;
+}
+
 .jumbotron-fluid{
     background-color: white;
 }
@@ -26,6 +35,15 @@ form{
 
 .logo-text{
     color: #3CB371;
+}
+
+footer{
+    height: 1rem; 
+}
+.footer-stay{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .navbar{
