@@ -27,6 +27,14 @@ form{
     height: 15px;
 }
 
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 0.5em;
+}
+
 /* got from w3schools.org */
 .vertical-center{
     display: flex;

@@ -1,9 +1,401 @@
 {% extends "nav_template.html" %}
 
+{% block necessary_scripts %}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+    integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous">
+</script>
+{% endblock %}
+
+
 {% block main %}
     <div>
     <br>
-        <h4 class="logo-text"><i>Global Trends</i></h3>
-            <h3 class="logo-text">Coming Soon!!</h3>
+        <h4 class="logo-text">{{ title }}</h3>
     </div>
+    <div class="flex-container">
+        <div>
+          <canvas id="chart0" width="750" height="600"></canvas>
+        </div>
+        <div>
+          <canvas id="chart1" width="750" height="600"></canvas>
+        </div>
+      </div>
+      <div class="flex-container">
+        <div>
+          <canvas id="chart2" width="750" height="600"></canvas>
+        </div>
+        <div>
+          <canvas id="chart3" width="750" height="600"></canvas>
+        </div>
+      </div>
+      <div class="flex-container">
+        <div>
+          <canvas id="chart4" width="750" height="600"></canvas>
+        </div>
+        <div>
+          <canvas id="chart5" width="750" height="600"></canvas>
+        </div>
+      </div>
+      <div class="flex-container">
+        <div>
+          <canvas id="chart6" width="750" height="600"></canvas>
+        </div>
+        <div>
+          <canvas id="chart7" width="750" height="600"></canvas>
+        </div>
+      </div>
+      <script>
+        const steps = 12;
+        let apiData;
+        const US = document.getElementById('chart0').getContext('2d');
+        const IND = document.getElementById('chart1').getContext('2d');
+        const SA = document.getElementById('chart2').getContext('2d');
+        const UK = document.getElementById('chart3').getContext('2d');
+        const SG = document.getElementById('chart4').getContext('2d');
+        const CAN = document.getElementById('chart5').getContext('2d');
+        const AUS = document.getElementById('chart6').getContext('2d');
+        const NG = document.getElementById('chart7').getContext('2d');
+
+        fetch("/api/data")
+        .then(res => res.json())
+        .then(data => apiData = data)
+        .then(() => {
+          console.log("Made API request to /api/data");
+          const max = apiData.max;
+          const lineData = [
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              scaleOverride: false,
+              scaleSteps: steps,
+              scaleStepWidth: max / steps,
+              scaleStartValue: 0,
+              scaleShowVerticalLines: true,
+              scaleShowGridLines : true,
+              barShowStroke : true,
+              scaleShowLabels: true,
+              bezierCurve: false,
+              data : apiData.values[0][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              scaleOverride: false,
+              scaleSteps: steps,
+              scaleStepWidth: max / steps,
+              scaleStartValue: 0,
+              scaleShowVerticalLines: true,
+              scaleShowGridLines : true,
+              barShowStroke : true,
+              scaleShowLabels: true,
+              bezierCurve: false,
+              data : apiData.values[0][1]
+              }]
+              },
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              data : apiData.values[1][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              data : apiData.values[1][1]
+              }]
+              },
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              data : apiData.values[2][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              data : apiData.values[2][1]
+              }]
+              },
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              data : apiData.values[3][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              data : apiData.values[3][1]
+              }]
+              },
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              data : apiData.values[4][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              data : apiData.values[4][1]
+            }]
+            },
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              data : apiData.values[5][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              data : apiData.values[5][1]
+              }]
+              },
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              data : apiData.values[6][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              data : apiData.values[6][1]
+              }]
+              },
+          {labels : apiData.labels,
+            datasets : [{
+              label: "Polarity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(60,179,113,1)",
+              pointBackgroundColor: "rgba(26,77,48,1)",
+              bezierCurve : false,
+              data : apiData.values[7][0]
+              }, {
+              label: "Subjectivity",
+              backgroundColor: "rgba(0,0,0,0)",
+              borderColor: "rgba(67,193,204,1)",
+              pointBackgroundColor: "rgba(38,108,115,1)",
+              bezierCurve : false,
+              data : apiData.values[7][1]
+              }]
+              }
+          ];
+          
+        //Chart.defaults.global.animationSteps = 50;
+        Chart.defaults.global.tooltipYPadding = 16;
+        Chart.defaults.global.tooltipCornerRadius = 0;
+        Chart.defaults.global.tooltipTitleFontStyle = "normal";
+        Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
+        //Chart.defaults.global.animationEasing = "easeOutBounce";
+        Chart.defaults.global.responsive = false;
+        Chart.defaults.global.scaleLineColor = "black";
+        Chart.defaults.global.scaleFontSize = 16;
+
+        // get bar chart canvas
+        
+        // const steps = 12;
+        // const max = apiData.max;
+        // draw bar chart
+        
+        const USchart = new Chart(US, {
+          type: 'line',
+          data: lineData[0], 
+          options: {
+          title: {
+            display: true,
+            text: "United States",
+            fontSize: 24
+          }
+        }
+      });
+
+      const INDchart = new Chart(IND, {
+        type: 'line',
+        data: lineData[1], 
+        options: {
+        title: {
+          display: true,
+          text: "India",
+          fontSize: 24
+        },
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: max / steps,
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+      }
+    });
+
+      const SAchart = new Chart(SA, {
+          type: 'line',
+          data: lineData[2], 
+          options: {
+          title: {
+            display: true,
+            text: "South Africa",
+            fontSize: 24
+          },
+          scaleOverride: true,
+          scaleSteps: steps,
+          scaleStepWidth: max / steps,
+          scaleStartValue: 0,
+          scaleShowVerticalLines: true,
+          scaleShowGridLines : true,
+          barShowStroke : true,
+          scaleShowLabels: true,
+          bezierCurve: false,
+        }
+      });
+
+       const UKchart = new Chart(UK, {
+        type: 'line',
+        data: lineData[3], 
+        options: {
+        title: {
+          display: true,
+          text: "United Kingdom",
+          fontSize: 24
+        },
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: max / steps,
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+      }
+    });
+
+    const SGchart = new Chart(SG, {
+          type: 'line',
+          data: lineData[4], 
+          options: {
+          title: {
+            display: true,
+            text: "Singapore",
+            fontSize: 24
+          },
+          scaleOverride: true,
+          scaleSteps: steps,
+          scaleStepWidth: max / steps,
+          scaleStartValue: 0,
+          scaleShowVerticalLines: true,
+          scaleShowGridLines : true,
+          barShowStroke : true,
+          scaleShowLabels: true,
+          bezierCurve: false,
+        }
+      });
+
+       const CANchart = new Chart(CAN, {
+        type: 'line',
+        data: lineData[5], 
+        options: {
+        title: {
+          display: true,
+          text: "Canada",
+          fontSize: 24
+        },
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: max / steps,
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+      }
+    });
+
+    const AUSchart = new Chart(AUS, {
+          type: 'line',
+          data: lineData[6], 
+          options: {
+          title: {
+            display: true,
+            text: "Australia",
+            fontSize: 24
+          },
+          scaleOverride: true,
+          scaleSteps: steps,
+          scaleStepWidth: max / steps,
+          scaleStartValue: 0,
+          scaleShowVerticalLines: true,
+          scaleShowGridLines : true,
+          barShowStroke : true,
+          scaleShowLabels: true,
+          bezierCurve: false,
+        }
+      });
+
+       const NGchart = new Chart(NG, {
+        type: 'line',
+        data: lineData[7], 
+        options: {
+        title: {
+          display: true,
+          text: "Nigeria",
+          fontSize: 24
+        },
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: max / steps,
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+      }
+    }); 
+      
+  //end of .then()  
+  });
+  </script>
 {% endblock %}
