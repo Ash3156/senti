@@ -33,7 +33,7 @@ def full_results(query_url):
 #     url : string : url of query
 #     Return
 #     results : list: contains list of dictionaries
-#     each dictionary has the keys 'url', 'title', 'image' with the corresponding values for that ith search result
+#     each dictionary has the keys 'url', 'title', 'image', 'time', 'publisher' with the corresponding values for that ith search result
 #     (i being the index in the list)
 #     this function is meant to find all of the necessary info for cards from queries
     num=10
@@ -49,6 +49,8 @@ def full_results(query_url):
                     results[i]['image']=element['src']
         results[i]['url']='https://news.google.com/'+special_result_tags[i].contents[0].contents[0].contents[1].contents[0]['href'].strip('./')
         results[i]['title']=special_result_tags[i].contents[0].contents[0].contents[1].contents[1].contents[0].contents[0]
+        results[i]['time']=special_result_tags[i].contents[0].contents[0].contents[1].contents[3].contents[0].contents[3].contents[0]
+        results[i]['publisher']=special_result_tags[i].contents[0].contents[0].contents[1].contents[3].contents[0].contents[2].contents[0]
     if len(special_result_tags)>num-1:
         return results[:num]
     for i in range(min(len(result_tags),num-len(special_result_tags))):
@@ -60,10 +62,14 @@ def full_results(query_url):
                     results[j]['image']=element['src']
             results[j]['url']='https://news.google.com/'+result_tags[i].contents[1].contents[0].contents[0]['href'].strip('./')
             results[j]['title']=result_tags[i].contents[1].contents[0].contents[1].contents[0].contents[0]
+            results[j]['time']=result_tags[i].contents[1].contents[0].contents[3].contents[0].contents[3].contents[0]
+            results[j]['publisher']=result_tags[i].contents[1].contents[0].contents[3].contents[0].contents[2].contents[0]
         if len(result_tags[i]['class'])==5:
             results[j]['image']=False
             results[j]['url']='https://news.google.com/'+result_tags[i].contents[0].contents[0].contents[0]['href'].strip('./')
             results[j]['title']=result_tags[i].contents[0].contents[0].contents[1].contents[0].contents[0]
+            results[j]['time']=result_tags[i].contents[0].contents[0].contents[3].contents[0].contents[3].contents[0]
+            results[j]['publisher']=result_tags[i].contents[0].contents[0].contents[3].contents[0].contents[2].contents[0]
     return results
 
 def only_urls(query_url,num):
